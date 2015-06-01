@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+<head>
+<script type="text/javascript">
+        function show() { document.getElementById('area').style.display = 'inline-block';
+                          document.getElementById('submit').style.display = 'inline-block';}
+		function hide() { document.getElementById('area').style.display = 'none';
+		                  document.getElementById('submit').style.display = 'none';}
+</script>
+<style>
+canvas {
+border-bottom: 1px solid black;
+border-left: 1px solid black;
+}
+</style>
+</head>
+
+<body>
+
+<button onclick="show();">Click to add bar</button>
+<input type="text" id="area" style="display: none;" size="16" placeholder=" Enter value below 500"></input>
+<input type="submit" style="display: none;" value="Submit" onclick="bar()" id="submit">
+
+<br><br>
+<canvas  id="myCanvas" width="1300" height="500" />
+<script>
+var j=0;
+var scores = [-1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1];
+
+function myfunction() {
+
+var canvas = document.getElementById('myCanvas');
+var ctx = canvas.getContext('2d');
+var width = 30;
+var currX = 40;
+var base = 500;
+
+for(var i=0;i<scores.length;i++){
+var h = scores[i];
+ctx.fillStyle='#6CA6CD';
+ctx.fillRect(currX, canvas.height - h, width, h);
+ctx.strokeRect(currX, canvas.height - h, width, h+1);
+ctx.font = "12px";
+ctx.fillStyle="black";
+if (scores[i]>19) 
+{ctx.strokeStyle="black";
+ctx.fillText(scores[i], currX + 6, canvas.height + 15 - h);}
+if (scores[i]<20&&scores[i]>=0)
+{ctx.strokeStyle="black";
+ctx.fillText(scores[i], currX + 6, canvas.height -5 - h);}
+currX += width + 30; 
+}
+};
+</script>
+
+<script>
+function bar() {
+
+scores[j] = document.getElementById('area').value;
+myfunction();
+hide();
+j += 1;
+
+}
+</script>
+
+</body>
+</html>
